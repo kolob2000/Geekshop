@@ -28,7 +28,6 @@ def main(request):
     # }
     with open('mainapp/main.json', 'r') as f:
         context = json.loads(f.read())
-    print(context)
     return render(request, 'mainapp/index.html', context=context)
 
 
