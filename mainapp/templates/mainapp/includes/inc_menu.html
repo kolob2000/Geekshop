@@ -1,8 +1,11 @@
 <a class="logo" href="{% url 'main' %}"></a>
 <ul class="menu">
-    <li><a class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}" href="{% url 'main' %}">домой</a></li>
-    <li><a class="{% if request.resolver_match.url_name == 'products:products' %}active{% endif %}" href="{% url 'products:products' %}">продукты</a></li>
-    <li><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">контакты</a></li>
+    <li><a class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}" href="{% url 'main' %}">домой</a>
+    </li>
+    <li><a class="{% if 'products' in request.path %}active{% endif %}"
+           href="{% url 'products:products' %}">продукты</a></li>
+    <li><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">контакты</a>
+    </li>
 </ul>
 <a class="search" href="#"></a>
 <a class="basket" href="#"></a>

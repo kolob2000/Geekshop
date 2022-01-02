@@ -18,39 +18,41 @@
         </div>
         {% for product in products %}
             {% if product.category.slug in request.path or request.path == '/products/' %}
-                <div class="details-products">
-                    <div class="details-slider">
-                        <div class="slider-product">
-                            <img src="{{ product.image.url }}" style="width: 570px;height: 570px;">
+                <a href="{% url 'products:product' product.category.slug product.slug %}">
+                    <div class="details-products">
+                        <div class="details-slider">
+                            <div class="slider-product">
+                                <img src="{{ product.image.url }}" style="width: 570px;height: 570px;">
+                            </div>
+                            <div class="slider-control">
+                                {% for image in product.images.all %}
+                                    <div class="block">
+                                        <a href="#"><img alt="" src="{{ image.image.url }}">
+                                            <div class="text"></div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div class="slider-control">
-                            {% for image in product.images.all %}
-                                <div class="block">
-                                    <a href="#"><img alt="" src="{{ image.image.url }}">
-                                        <div class="text"></div>
-                                    </a>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
 
-                    <div class="description">
-                        <h3 class="big-bold">{{ product.title }}</h3>
-                        <h3 class="red">горячее предложение</h3>
-                        <p class="price"> {{ product.price }} <span>руб</span></p>
-                        <a class="red-button" href="#">
-                            заказать <i aria-hidden="true" class="fa fa-chevron-right"></i>
-                        </a>
-                        <div class="description-text">
-                            <p>Расположитесь комфортно.</p>
-                            <p>Отличное качество материалов
-                                позволит вам это.</p>
-                            <p>Различные цвета</p>
-                            <p>высочайший уровень
-                                эргономики и прочность.</p>
+                        <div class="description">
+                            <h3 class="big-bold">{{ product.title }}</h3>
+                            <h3 class="red">горячее предложение</h3>
+                            <p class="price"> {{ product.price }} <span>руб</span></p>
+                            <a class="red-button" href="#">
+                                заказать <i aria-hidden="true" class="fa fa-chevron-right"></i>
+                            </a>
+                            <div class="description-text">
+                                <p>Расположитесь комфортно.</p>
+                                <p>Отличное качество материалов
+                                    позволит вам это.</p>
+                                <p>Различные цвета</p>
+                                <p>высочайший уровень
+                                    эргономики и прочность.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             {% endif %}
 
         {% endfor %}
@@ -64,7 +66,9 @@
             <div class="related-products clearfix">
                 {% for product in rel_products %}
                     <div class="block">
-                        <a href="#"><img alt="" src="{{ product.image.url }}" style="width: 370px;height: 370px;">
+                        <a href="{% url 'products:product' product.category.slug product.slug %}"><img alt=""
+                                                                                                       src="{{ product.image.url }}"
+                                                                                                       style="width: 370px;height: 370px;">
                             <div class="text">
                                 <img alt="img" src="{% static 'img/icon-hover.png' %}">
                                 <h4>{{ product.title }}</h4>

@@ -28,7 +28,7 @@ class Product(models.Model):
                                   verbose_name='Короткое описание')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     is_stock = models.BooleanField(default=True, verbose_name='На складе')
-    slug = models.SlugField(max_length=70, unique=True, blank=True)
+    slug = models.SlugField(max_length=70, unique=True, blank=False)
 
     class Meta:
         verbose_name_plural = 'Товары'

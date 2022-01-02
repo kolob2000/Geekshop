@@ -32,3 +32,14 @@ def contact(request):
     }
 
     return render(request, 'mainapp/contact.html', context=context)
+
+
+def product_detail(request, category, product):
+    product = Product.objects.get(slug=product)
+    context = {
+        'title': product.title,
+        'product': product,
+        'menu_links': Category.objects.all(),
+        'rel_products': Product.objects.all().order_by('?')[:3],
+    }
+    return render(request, 'mainapp/product_detail.html', context=context)
