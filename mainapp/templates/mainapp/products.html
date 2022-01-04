@@ -18,8 +18,9 @@
         </div>
         {% for product in products %}
             {% if product.category.slug in request.path or request.path == '/products/' %}
-                <a href="{% url 'products:product' product.category.slug product.slug %}">
+
                     <div class="details-products">
+                    <a href="{% url 'products:product' product.category.slug product.slug %}">
                         <div class="details-slider">
                             <div class="slider-product">
                                 <img src="{{ product.image.url }}" style="width: 570px;height: 570px;">
@@ -34,7 +35,8 @@
                                 {% endfor %}
                             </div>
                         </div>
-
+                    </a>
+                    <a href="{% url 'products:product' product.category.slug product.slug %}" style="text-decoration: none">
                         <div class="description">
                             <h3 class="big-bold">{{ product.title }}</h3>
                             <h3 class="red">горячее предложение</h3>
@@ -51,8 +53,8 @@
                                     эргономики и прочность.</p>
                             </div>
                         </div>
+                    </a>
                     </div>
-                </a>
             {% endif %}
 
         {% endfor %}
