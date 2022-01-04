@@ -40,7 +40,10 @@ class Product(models.Model):
 
 def slug_generator(sender, instance, *args, **kwargs):
     if not instance.slug:
-        instance.slug = translit.slugify(instance.title + '-' + str(sender.objects.order_by('-pk')[0].pk + 1))
+        if sender.objects.count():
+            instance.slug = translit.slugify(instance.title + '-' + str(sender.objects.order_by('-pk')[0].pk + 1))
+        else:
+            instance.slug = translit.slugify(instance.title + '-' + '1')
 
 
 pre_save.connect(slug_generator, sender=Product)

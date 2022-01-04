@@ -52,7 +52,7 @@
         "fields": {
             "category": 2,
             "title": "премиум",
-            "image": "img/product-5.jpg",
+            "image": "img/product-61.jpg",
             "short_desc": "улучшенный дизайн",
             "description": "идеально впишется в строгий интерьер офиса",
             "price": "3587.41",
@@ -64,7 +64,7 @@
         "fields": {
             "category": 3,
             "title": "новинка",
-            "image": "img/product-6.jpg",
+            "image": "img/product-11.jpg",
             "short_desc": "инновационный дизайн",
             "description": "нестандартное решение для современного интерьера",
             "price": "5361.47",
@@ -76,7 +76,7 @@
         "fields": {
             "category": 3,
             "title": "прогресс",
-            "image": "img/product-7.jpg",
+            "image": "img/product-21.jpg",
             "short_desc": "прогрессивный дизайн",
             "description": "функциональное и комфортное решение",
             "price": "6789.33",
@@ -86,9 +86,9 @@
     {
         "model": "mainapp.product",
         "fields": {
-            "category": 1,
+            "category": 4,
             "title": "венеция",
-            "image": "img/product-8.jpg",
+            "image": "img/product-31.jpg",
             "short_desc": "классические формы",
             "description": "окунитесь в европейский комфорт",
             "price": "4147.51",
@@ -98,9 +98,9 @@
     {
         "model": "mainapp.product",
         "fields": {
-            "category": 2,
+            "category": 4,
             "title": "тоскана",
-            "image": "img/product-9.jpg",
+            "image": "img/product-41.jpg",
             "short_desc": "эргономичная спинка",
             "description": "почувствуйте комфорт и насладитесь цветовой гаммой",
             "price": "7147.35",
@@ -110,9 +110,9 @@
     {
         "model": "mainapp.product",
         "fields": {
-            "category": 3,
+            "category": 4,
             "title": "рим",
-            "image": "img/product-10.jpg",
+            "image": "img/product-51.jpg",
             "short_desc": "удачные пропорции",
             "description": "компактность и функциональность",
             "price": "8357.77",

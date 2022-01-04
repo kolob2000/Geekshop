@@ -1,0 +1,38 @@
+[
+  {
+    "model": "mainapp.category",
+    "pk": 1,
+    "fields": {
+      "title": "Столы",
+      "description": "Здесь должно быть описание...",
+      "slug": ""
+    }
+  },
+  {
+    "model": "mainapp.category",
+    "pk": 2,
+    "fields": {
+      "title": "Стулья",
+      "description": "Здесь должно быть описание...",
+      "slug": ""
+    }
+  },
+  {
+    "model": "mainapp.category",
+    "pk": 3,
+    "fields": {
+      "title": "Кресла",
+      "description": "Здесь должно быть описание...",
+      "slug": ""
+    }
+  },
+  {
+    "model": "mainapp.category",
+    "pk": 4,
+    "fields": {
+      "title": "Тумбы",
+      "description": "Здесь должно быть описание...",
+      "slug": ""
+    }
+  }
+]
