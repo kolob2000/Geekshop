@@ -1,0 +1,28 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div style="display: flex; justify-content: center">
+        <h1>{{ title }}</h1>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; padding-top: 50px;padding-bottom: 50px;">
+        {% if user.avatar %}
+            <img src="{{ user.avatar.url }}" alt="" style="width: 100px;height: 100px; clip-path: circle(50px); margin-bottom: 40px;">
+        {% endif %}
+        {% if user.first_name %}
+            <h3>{{ user.first_name }}</h3>
+        {% endif %} 
+        <p>
+        <h4>Электронная почта: <h5>{{ user.email }}</h5></h4>
+        </p>
+        <p>
+        <h4>Возраст: <h5>{{ user.age }}</h5></h4>
+        </p>
+    </div>
+
+    <a href="{% url 'auth:user_edit' %}" class="btn  form-control"
+       style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px"> Изменить данные</a>
+
+{% endblock %}

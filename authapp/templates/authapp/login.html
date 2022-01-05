@@ -1,0 +1,18 @@
+{% extends 'authapp/base.html' %}
+
+
+{% block content %}
+    <div style="display: flex; justify-content: center">
+        <h1>{{ title }}</h1>
+    </div>
+    <form action="{% url 'auth:login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Войти" class="btn  form-control"
+               style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px">
+    </form>
+    <ul>
+        <li style="list-style-type: none"><a href="{% url 'auth:register' %}">Регистрация</a></li>
+    </ul>
+{% endblock %}
