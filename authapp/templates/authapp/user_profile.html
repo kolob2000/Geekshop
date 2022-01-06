@@ -11,7 +11,7 @@
             <img src="{{ user.avatar.url }}" alt="" style="width: 100px;height: 100px; clip-path: circle(50px); margin-bottom: 40px;">
         {% endif %}
         {% if user.first_name %}
-            <h3>{{ user.first_name }}</h3>
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
         {% endif %} 
         <p>
         <h4>Электронная почта: <h5>{{ user.email }}</h5></h4>
@@ -24,5 +24,8 @@
     <a href="{% url 'auth:user_edit' %}" class="btn  form-control"
        style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
 border-radius: 10px"> Изменить данные</a>
+    <a href="{% url 'main' %}" class="btn  form-control"
+       style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">На главную</a>
 
 {% endblock %}

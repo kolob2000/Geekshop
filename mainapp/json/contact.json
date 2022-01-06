@@ -1,0 +1,32 @@
+[
+  {
+    "model": "mainapp.contact",
+    "pk": 1,
+    "fields": {
+      "phone": "+7-888-888-8888",
+      "email": "info@geekshop.ru",
+      "city": "Петропавловск-Камчатский",
+      "address": "Труда"
+    }
+  },
+  {
+    "model": "mainapp.contact",
+    "pk": 2,
+    "fields": {
+      "phone": "+7-888-888-8882",
+      "email": "info@geekshop.ru",
+      "city": "Санкт-Петербург",
+      "address": "ул. Русановская"
+    }
+  },
+  {
+    "model": "mainapp.contact",
+    "pk": 3,
+    "fields": {
+      "phone": "+7-888-888-8881",
+      "email": "info@geekshop.ru",
+      "city": "Барнаул",
+      "address": "ул. Ленина"
+    }
+  }
+]

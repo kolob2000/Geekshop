@@ -12,7 +12,8 @@
                style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
 border-radius: 10px">
     </form>
-    <ul>
-        <li style="list-style-type: none"><a href="{% url 'auth:register' %}">Регистрация</a></li>
-    </ul>
+
+    <a href="{% url 'auth:register' %}" class="btn  form-control"
+               style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">Регистрация</a>
 {% endblock %}

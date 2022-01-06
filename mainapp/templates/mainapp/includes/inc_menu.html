@@ -6,6 +6,15 @@
            href="{% url 'products:products' %}">продукты</a></li>
     <li><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">контакты</a>
     </li>
+    {% if user.is_authenticated %}
+        <li><a class="{% if 'user_profile' in request.path or 'user_edit' in request.path %}active{% endif %}"
+               href="{% url 'auth:user_profile' %}">{{ user.username }}</a></li>
+        <li><a class="{% if 'logout' in request.path %}active{% endif %}"
+               href="{% url 'auth:logout' %}">Выйти</a></li>
+    {% else %}
+        <li><a class="{% if 'login' in request.path %}active{% endif %}"
+               href="{% url 'auth:login' %}">Войти</a></li>
+    {% endif %}
 </ul>
 <a class="search" href="#"></a>
 <a class="basket" href="#"></a>
