@@ -1,0 +1,11 @@
+[
+  {
+    "category": 5,
+    "title": "Красивый шкаф",
+    "image": "img/product-1.jpg",
+    "short_desc": "удобный шкаф",
+    "description": "подойдет для больших вещей",
+    "price": "9650.50",
+    "quantity": 17
+  }
+]
