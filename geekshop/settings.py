@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,18 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
 ]
-
+JAZZMIN_SETTINGS = {
+    "topmenu_links": [
+        {"name": "Home", "url": "main", "permissions": ["auth.view_user"]},
+        {'model': 'authapp.ShopUser'},
+        {'app': 'authapp'}
+    ],
+    "show_ui_builder": True,
+}
+JAZZMIN_UI_TWEAKS = {
+    "theme": "cerulean",
+    "brand_small_text": True,
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
