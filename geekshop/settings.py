@@ -42,9 +42,10 @@ INSTALLED_APPS = [
 ]
 JAZZMIN_SETTINGS = {
     "topmenu_links": [
-        {"name": "Home", "url": "main", "permissions": ["auth.view_user"]},
+        {"name": "Главная", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "На сайт", "url": "main", "permissions": ["auth.view_user"]},
         {'model': 'authapp.ShopUser'},
-        {'app': 'authapp'}
+        {'app': 'mainapp'},
     ],
     "show_ui_builder": True,
 }
