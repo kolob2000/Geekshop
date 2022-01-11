@@ -13,6 +13,7 @@ def main(request):
 
 
 def products(request, slug=None):
+
     title = 'продукты'
     context = {
         'menu_links': Category.objects.all(),
