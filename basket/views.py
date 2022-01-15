@@ -11,6 +11,8 @@ def view(request):
 
 
 def add(request, pk):
+    if str(request.user) == 'AnonymousUser':
+        return HttpResponseRedirect(reverse('auth:logingit '))
     basket = Basket.objects.filter(user=request.user, product_id=pk).first()
     if basket:
         basket.quantity += 1
@@ -19,4 +21,4 @@ def add(request, pk):
         product = get_object_or_404(Product, pk=pk)
         Basket.objects.create(user=request.user, product=product, quantity=1)
 
-    return HttpResponseRedirect(reverse('main'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
