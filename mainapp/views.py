@@ -13,13 +13,13 @@ def main(request):
 
 
 def products(request, slug=None):
-
     title = 'продукты'
     context = {
         'menu_links': Category.objects.all(),
-        'products': Product.objects.all(),
+        'products': Product.objects.all() if slug is None else Category.objects.get(slug=slug).product_set.all(),
         'title': title,
-        'rel_products': Product.objects.all().order_by('?')[:3],
+        'rel_products': Product.objects.all().order_by('?')[:3] if slug is None else Category.objects.get(
+            slug=slug).product_set.all().order_by('?')[:3],
     }
 
     return render(request, 'mainapp/products.html', context=context)
