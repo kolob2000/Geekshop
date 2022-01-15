@@ -11,8 +11,8 @@ def view(request):
 
 
 def add(request, pk):
-    if str(request.user) == 'AnonymousUser':
-        return HttpResponseRedirect(reverse('auth:logingit '))
+    if request.user.is_anonymous:
+        return HttpResponseRedirect(reverse('auth:login'))
     basket = Basket.objects.filter(user=request.user, product_id=pk).first()
     if basket:
         basket.quantity += 1
