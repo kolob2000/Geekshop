@@ -19,6 +19,4 @@ def add(request, pk):
         product = get_object_or_404(Product, pk=pk)
         Basket.objects.create(user=request.user, product=product, quantity=1)
 
-    print(True) if basket else print(False)
-
     return HttpResponseRedirect(reverse('main'))
