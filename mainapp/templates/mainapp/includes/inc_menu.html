@@ -1,3 +1,4 @@
+{% load static %}
 <a class="logo" href="{% url 'main' %}"></a>
 <ul class="menu">
     <li><a class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}" href="{% url 'main' %}">домой</a>
@@ -11,8 +12,8 @@
                href="{% url 'auth:user_profile' %}">{{ user.username }}</a></li>
         {% if user.is_superuser %}
             <li><a class=""
-               href="{% url 'admin:index' %}">Админка</a></li>
-        {% endif %} 
+                   href="{% url 'admin:index' %}">Админка</a></li>
+        {% endif %}
         <li><a class="{% if 'logout' in request.path %}active{% endif %}"
                href="{% url 'auth:logout' %}">Выйти</a></li>
     {% else %}
@@ -21,4 +22,5 @@
     {% endif %}
 </ul>
 <a class="search" href="#"></a>
-<a class="basket" href="#"></a>
+<a class="basket" href="#">{% if basket_quantity %}
+    <span class="quantity" style="">{{ basket_quantity }}</span>{% endif %}</a>
