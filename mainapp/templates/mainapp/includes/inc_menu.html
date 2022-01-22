@@ -22,5 +22,7 @@
     {% endif %}
 </ul>
 <a class="search" href="#"></a>
-<a class="basket" href="#">{% if basket_quantity %}
-    <span class="quantity" style="">{{ basket_quantity }}</span>{% endif %}</a>
+<a class="basket" href="{% url 'basket:basket' %}">{% if basket_quantity %}
+    <span class="quantity" style="">{{ basket_quantity }}</span>
+    <span class="total_cost"> Всего:&nbsp;{{ basket_cost|floatformat:0 }}&nbsp;&#8381</span>
+{% endif %}</a>

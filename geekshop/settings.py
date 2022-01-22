@@ -77,7 +77,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'basket.context_processor.quantity'
+                'basket.context_processor.quantity',
+                'basket.context_processor.total_cost'
             ],
         },
     },
@@ -141,3 +142,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
+LOGIN_URL = 'auth:login'

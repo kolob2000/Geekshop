@@ -9,3 +9,9 @@ class Basket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     add_at = models.DateTimeField(auto_now_add=True, verbose_name='время добавления')
+
+    @property
+    def product_cost(self):
+        return self.quantity * self.product.price
+
+

@@ -99,6 +99,14 @@ html, body {
     left: 1210px;
 }
 
+.total_cost {
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 33px;
+    color: black;
+}
+
 .quantity {
     display: block;
     font-size: 13px;
@@ -686,7 +694,33 @@ html, body {
 
 table {
     width: 100%;
+    margin-top: 30px;
 }
+
+.basket-button {
+    background: #f44336;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.basket-button:hover {
+    color: #212121;
+}
+
+.basket_quantity {
+    width: 100px !important;
+}
+
+
 
 td:first-child {
     width: 235px;
