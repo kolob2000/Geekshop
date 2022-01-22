@@ -1,0 +1,8 @@
+{% extends 'basketapp/base.html' %}
+{% load static %}
+{% block content %}
+    <h1 style="text-align: center; margin-top: 50px;">{{ title }}</h1>
+    <div class="basket_ajax" >
+        {% include 'basketapp/basket_ajax.html' %}
+    </div>
+{% endblock %}

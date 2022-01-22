@@ -8,9 +8,22 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="" class="bttn">Click me</a>
+    <div class="div-data">
+
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-
+    btn = document.querySelector('.bttn');
+    divdata = document.querySelector('.div-data')
+    btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        axios.get('/auth/axios').then(function (response) {
+            divdata.innerHTML = response.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
 </script>
-
 </body>
 </html>
