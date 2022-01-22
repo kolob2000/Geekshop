@@ -1,0 +1,35 @@
+{% load static %}
+{% if basket %}
+    <span class="basket_quantity" data-quantity="{{ basket_quantity }}" data-total_cost="{{ basket_cost }}"></span>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Товар</th>
+            <th scope="col">Изображение</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Общая цена</th>
+            <th scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in basket %}
+            <tr>
+                <th>{{ item.product.title|title }}</th>
+                <td><img src="{{ item.product.image.url }}" alt="" style="width: 40px; height: 40px"></td>
+                <td><input type="number" data-pk="{{ item.pk }}" min="0" value="{{ item.quantity }}"
+                           class="basket_quantity form-control "></td>
+                <td>{{ item.product.price|floatformat:0 }}</td>
+                <td>{{ item.product_cost|floatformat:0 }}</td>
+                <td><a href="" class=" basket-button basket-remove-product" data-pk="{{ item.pk }}">удалить</a></td>
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+    <p style="text-align: end; font-weight: 700">Всего:&nbsp;{{ basket_cost }}</p>
+{% else %}
+    <span class="basket_quantity" data-quantity="0"></span>
+    <h2 style="text-align: center; margin-top: 50px;" class="text-danger">Ваша корзина пуста</h2>
+{% endif %}
