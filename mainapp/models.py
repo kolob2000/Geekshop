@@ -8,6 +8,7 @@ class Category(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название', unique=True)
     description = models.TextField(blank=True, verbose_name='Описание', default='Здесь должно быть описание...')
     slug = models.SlugField(max_length=70, unique=True)
+    is_active = models.BooleanField(default=True, verbose_name='Активно')
 
     class Meta:
         verbose_name_plural = 'Категории'
@@ -33,7 +34,6 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = 'Товары'
         verbose_name = 'Товар'
-
 
     def __str__(self):
         return self.title
