@@ -1,0 +1,14 @@
+{% load static %}
+
+<div class="admin-container">
+    <ul class="menu menu-admin">
+        <li><a class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}"
+               href="{% url 'main' %}">домой</a>
+        </li>
+        <li><a class="{% if request.resolver_match.route == 'admin/' %}active{% endif %}"
+               href="{% url 'admin:index' %}">Пользователи</a></li>
+        <li><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+               href="{% url 'admin:category_read' %}">Категории</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,26 @@
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+    <h2 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">{{ title|title }}</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Логин</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Эл.почта</th>
+            <th scope="col">Редактировать</th>
+            <th scope="col">Удалить/Востановить</th>
+        </tr>
+        </thead>
+        <tbody class="ajax-users">
+        {% include 'adminapp/includes/ajax-users.html' %}
+        </tbody>
+    </table>
+    <a href="{% url 'admin:user_create' %}" class="admin-button">Создать пользователя</a>
+
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}

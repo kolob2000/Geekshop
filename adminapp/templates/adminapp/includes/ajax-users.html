@@ -1,0 +1,10 @@
+{% for user in users %}
+    <tr class="{% if not user.is_active %}opacity-50{% endif %} ">
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</td>
+        <td>{{ user.email }}</td>
+        <td><a href="{% url 'admin:user_update' user.pk %}" class="admin-button">Редактировать</a></td>
+        <td><a href="{% url 'admin:user_delete' user.pk %}" data-pk="{{ user.pk }}" class="admin-button users-delete">+|-</a></td>
+    </tr>
+{% endfor %}
+
