@@ -28,7 +28,7 @@
         <div class="clearfix">
         </div>
         <div class="tab-content">
-            {% for product in products %}
+            {% for product in object_list %}
                 <div class="block">
                     <a href="{% url 'products:product' product.category.slug product.slug  %}">
                         <img alt="img" src="{{ product.image.url }}" style="height: 270px; width: 270px;">

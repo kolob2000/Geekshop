@@ -1,11 +1,19 @@
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.core.paginator import Paginator
 
 # Create your views here.
-from adminapp.forms import ShopUserAdminChangeForm, CategoryEditForm
+from django.urls import reverse
+from django.views import View
+from django.views.generic import DetailView, DeleteView
+from django.views.generic.detail import SingleObjectMixin
+
+from adminapp.forms import ShopUserAdminChangeForm, CategoryEditForm, ProductEditForm
 from authapp.models import ShopUser
 from authapp.forms import ShopUserCreationForm
-from mainapp.models import Category
+from mainapp.models import Category, Product
 
 
 @user_passes_test(lambda user: user.is_superuser)
@@ -96,12 +104,87 @@ def category_update(request, pk=None):
     return render(request, 'adminapp/category_edit.html', context=context)
 
 
-@user_passes_test(lambda user: user.is_superuser)
-def category_delete(request, pk):
+# @user_passes_test(lambda user: user.is_superuser)
+# def category_delete(request, pk):
+#     category = get_object_or_404(Category, pk=pk)
+#     if category.is_active:
+#         category.is_active = False
+#     else:
+#         category.is_active = True
+#     category.save()
+#     return render(request, 'adminapp/includes/ajax-category.html', context={'categories': Category.objects.all(), })
+
+
+class CategoryDeleteView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        category = Category.objects.get(pk=kwargs['pk'])
+        if category.is_active:
+            category.is_active = False
+        else:
+            category.is_active = True
+        category.save()
+        return render(self.request, 'adminapp/includes/ajax-category.html',
+                      context={'categories': Category.objects.all(), })
+
+
+def product_read(request, pk):
     category = get_object_or_404(Category, pk=pk)
-    if category.is_active:
-        category.is_active = False
+    objects = category.product_set.all()
+    paginator = Paginator(objects, 2)
+    page_num = request.GET.get('page', 1)
+    page_objects = paginator.get_page(page_num)
+    context = {
+        'title': category.title,
+        'products': page_objects,
+    }
+    return render(request, 'adminapp/products_by_category.html', context=context)
+
+
+# def product_read(request, pk):
+#     category = get_object_or_404(Category, pk=pk)
+#     context = {
+#         'title': category.title,
+#         'products': category.product_set.all(),
+#     }
+#     return render(request, 'adminapp/products_by_category.html', context=context)
+
+
+def product_create(request, pk):
+    if request.method == 'POST':
+        form = ProductEditForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin:product_read', args=[pk]))
+    category = get_object_or_404(Category, pk=pk)
+    context = {
+        'title': 'Создать продукт',
+        'form': ProductEditForm(initial={'category': category}),
+    }
+    return render(request, 'adminapp/product_create.html', context=context)
+
+
+def product_update(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    category = product.category.pk
+    if request.method == 'POST':
+        form = ProductEditForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin:product_read', args=[category]))
     else:
-        category.is_active = True
-    category.save()
-    return render(request, 'adminapp/includes/ajax-category.html', context={'categories': Category.objects.all(), })
+        context = {
+            'title': 'Редактировать продукт',
+            'form': ProductEditForm(instance=product)
+        }
+    return render(request, 'adminapp/product_update.html', context=context)
+
+
+def product_delete(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    category = product.category.pk
+    if product.is_active:
+        product.is_active = False
+    else:
+        product.is_active = True
+    product.save()
+    return HttpResponseRedirect(reverse('admin:product_read', args=[category]))
