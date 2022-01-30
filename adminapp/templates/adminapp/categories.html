@@ -1,0 +1,26 @@
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+    <h2 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">{{ title|title }}</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Товары категории</th>
+            <th scope="col">Редактировать</th>
+            <th scope="col">Удалить/Востановить</th>
+        </tr>
+        </thead>
+        <tbody class="ajax-category">
+        {% include 'adminapp/includes/ajax-category.html' %}
+        </tbody>
+    </table>
+    <a href="{% url 'admin:category_create' %}" class="admin-button">Создать категорию</a>
+
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}
