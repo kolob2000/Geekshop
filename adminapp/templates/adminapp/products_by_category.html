@@ -1,0 +1,50 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+    <h2 style="text-align: center; margin-top: 50px; margin-bottom: 50px;">{{ title|title }}</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Товар</th>
+            <th scope="col">Изображение</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Редактировать</th>
+            <th scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr class=" {% if not product.is_active %}opacity-50{% endif %}">
+                <th>{{ product.title|title }}</th>
+                <th><img src="{{ product.image.url }}" alt="" style="width: 40px; height: 40px"></th>
+                <th>{{ product.price|floatformat:0 }}</th>
+                <th><a href="{% url 'admin:product_update' product.pk %}" class="admin-button">Редактировать</a></th>
+                <th><a href="{% url 'admin:product_delete' product.pk %}" class="admin-button">+|-</a></th>
+            </tr>
+        {% endfor %}
+        {% for product in products %}
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item {% if not products.has_previous %}visually-hidden{% endif %}"><a class="page-link"
+                                                                                                  href="{% if products.has_previous %}?page={{ products.previous_page_number }}{% endif %}">Previous</a>
+            </li>
+            {% for page in products.paginator.page_range %}
+                <li class="page-item {% if products.number == page %}active{% endif %}"><a class="page-link"
+                                                                                           href="?page={{ page }}">{{ page }}</a>
+                </li>
+            {% endfor %}
+            <li class="page-item {% if not products.has_next %}visually-hidden{% endif %}"><a class="page-link"
+                                                                                              href="{% if products.has_next %}?page={{ products.next_page_number }}{% endif %}">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <a href="{% url 'admin:product_create' products.0.category.pk %}" class="admin-button">Создать Товар</a>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock footer %}
