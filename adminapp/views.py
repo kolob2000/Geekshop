@@ -71,6 +71,7 @@ def user_delete(request, pk):
 
 @user_passes_test(lambda user: user.is_superuser)
 def category_read(request):
+    print('categories_read')
     context = {
         'categories': Category.objects.all(),
         'title': 'Категории',
@@ -80,6 +81,7 @@ def category_read(request):
 
 @user_passes_test(lambda user: user.is_superuser)
 def category_update(request, pk=None):
+    print('working update')
     if pk:
         edit_category = get_object_or_404(Category, pk=pk)
         if request.method == 'POST':
@@ -104,27 +106,28 @@ def category_update(request, pk=None):
     return render(request, 'adminapp/category_edit.html', context=context)
 
 
-# @user_passes_test(lambda user: user.is_superuser)
-# def category_delete(request, pk):
-#     category = get_object_or_404(Category, pk=pk)
-#     if category.is_active:
-#         category.is_active = False
-#     else:
-#         category.is_active = True
-#     category.save()
-#     return render(request, 'adminapp/includes/ajax-category.html', context={'categories': Category.objects.all(), })
+@user_passes_test(lambda user: user.is_superuser)
+def category_delete(request, pk):
+    print('working data')
+    category = get_object_or_404(Category, pk=pk)
+    if category.is_active:
+        category.is_active = False
+    else:
+        category.is_active = True
+    category.save()
+    return render(request, 'adminapp/includes/ajax-category.html', context={'categories': Category.objects.all(), })
 
 
-class CategoryDeleteView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        category = Category.objects.get(pk=kwargs['pk'])
-        if category.is_active:
-            category.is_active = False
-        else:
-            category.is_active = True
-        category.save()
-        return render(self.request, 'adminapp/includes/ajax-category.html',
-                      context={'categories': Category.objects.all(), })
+# class CategoryDeleteView(LoginRequiredMixin, View):
+#     def get(self, *args, **kwargs):
+#         category = Category.objects.get(pk=kwargs['pk'])
+#         if category.is_active:
+#             category.is_active = False
+#         else:
+#             category.is_active = True
+#         category.save()
+#         return render(self.request, 'adminapp/includes/ajax-category.html',
+#                       context={'categories': Category.objects.all(), })
 
 
 def product_read(request, pk):
