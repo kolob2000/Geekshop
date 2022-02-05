@@ -157,13 +157,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
 LOGIN_URL = 'auth:login'
-LOGIN_REDIRECT_URL = 'authapp:user_profile'
+LOGIN_REDIRECT_URL = 'authapp:user_edit'
 
-DOMAIN_NAME = 'http://localhost'
+# DOMAIN_NAME = 'http://localhost'
+DOMAIN_NAME = 'http://django-python.ru'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'k.kolabis@mail.ru'
-EMAIL_HOST_PASSWORD = 'QXRGRdevADJ6X3P8vJGF'
+EMAIL_HOST_PASSWORD = 'SMVw2Whdq2tLxkyvVPh4'
 EMAIL_USE_SSL = True
 # VK_REGISTRATION
 SOCIAL_AUTH_VK_OAUTH2_API_VERSION = '5.81'
