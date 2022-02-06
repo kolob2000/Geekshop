@@ -1,6 +1,7 @@
 import django.contrib.auth.backends
 from django.contrib import auth, messages
 from django.core.mail import send_mail
+from django.db import transaction
 from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from django.urls import reverse
 
@@ -53,6 +54,7 @@ def register(request):
     return render(request, 'authapp/registration.html', context=context)
 
 
+@transaction.atomic
 def user_edit(request):
     if request.method == 'POST':
         edit_form = ShopUserChangeForm(request.POST, request.FILES, instance=request.user)
