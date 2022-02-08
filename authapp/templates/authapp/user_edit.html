@@ -8,6 +8,7 @@
     <form action="{% url 'auth:user_edit' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ edit_form.as_p }}
         <input type="submit" value="Сохранить данные" class="btn  form-control"
                style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
 border-radius: 10px">

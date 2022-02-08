@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'authapp.apps.AuthappConfig',
     'basket.apps.BasketConfig',
     'adminapp.apps.AdminappConfig',
+    'social_django',
 ]
 JAZZMIN_SETTINGS = {
     "topmenu_links": [
@@ -79,7 +80,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'basket.context_processor.quantity',
-                'basket.context_processor.total_cost'
+                'basket.context_processor.total_cost',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -100,20 +103,30 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+if not DEBUG:
+    AUTH_PASSWORD_VALIDATORS = [
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        },
+    ]
+else:
+    AUTH_PASSWORD_VALIDATORS = []
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2'
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -144,3 +157,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
 LOGIN_URL = 'auth:login'
+LOGIN_REDIRECT_URL = 'authapp:user_edit'
+
+# DOMAIN_NAME = 'http://localhost'
+DOMAIN_NAME = 'http://django-python.ru'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'k.kolabis@mail.ru'
+EMAIL_HOST_PASSWORD = 'SMVw2Whdq2tLxkyvVPh4'
+EMAIL_USE_SSL = True
+# VK_REGISTRATION
+SOCIAL_AUTH_VK_OAUTH2_API_VERSION = '5.81'
+SOCIAL_AUTH_VK_OAUTH2_KEY = '8071408'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'VbRMqaPUcEEkCoZlM35i'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+
+# GITHUB_REGISTRATION
+SOCIAL_AUTH_GITHUB_KEY = '020e70235797ec26ce93'
+SOCIAL_AUTH_GITHUB_SECRET = '2558e730162f4d085e59dcbe7e299b48c0dc3a3c'
+SOCIAL_AUTH_GITHUB_SCOPE = ['email']
+
+# GOOGLE_REGISTRATION
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '909238754452-jrbm1cm7cvehg7bl3arq6hof8haooh8m.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']

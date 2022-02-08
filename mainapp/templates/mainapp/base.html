@@ -10,6 +10,7 @@
         {% endblock title %}
     </title>
     {% block css %}
+        {#        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">#}
         <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'fonts/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
     {% endblock %}
@@ -22,6 +23,19 @@
     {% block menu %}
 
     {% endblock menu %}
+    {% block messages %}
+        {% if messages %}
+            <div class="row messages">
+                {% for message in messages %}
+                    <div {% if message.tags %}
+                        {% if message.tags == 'error' %}
+                            class="col alert alert-danger"
+                        {% else %}
+                            class="col alert alert-{{ message.tags }}"{% endif %}{% endif %}>{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock messages %}
 
     {% block content %}
 

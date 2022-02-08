@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
 import mainapp.views as mainapp
 from django.conf import settings
@@ -25,13 +25,14 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('admin/', include('adminapp.urls', namespace='admin')),
-    path('', mainapp.MainListView.as_view(), name='main'),
+    re_path(r'^admin/', include('adminapp.urls', namespace='admin')),
+    re_path(r'^$', mainapp.MainListView.as_view(), name='main'),
     # path('', mainapp.main, name='main'),
-    path("products/", include("mainapp.urls", namespace="products")),
-    path("auth/", include("authapp.urls", namespace="auth")),
-    path("basket/", include("basket.urls", namespace="basket")),
-    path('contact/', mainapp.ContactListView.as_view(), name='contact'),
+    re_path(r"^products/", include("mainapp.urls", namespace="products")),
+    re_path(r"^auth/", include("authapp.urls", namespace="auth")),
+    re_path(r"^basket/", include("basket.urls", namespace="basket")),
+    re_path(r'^contact/', mainapp.ContactListView.as_view(), name='contact'),
+    re_path(r'^social/', include('social_django.urls', namespace='social')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
