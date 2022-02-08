@@ -14,6 +14,19 @@ border-radius: 10px">
     </form>
 
     <a href="{% url 'auth:register' %}" class="btn  form-control"
-               style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+       style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
 border-radius: 10px; margin-top: 20px;">Регистрация</a>
+    <div class="row justify-content-center">
+        <div class="col-2"><a href="{% url 'social:begin' 'github' %}" class="btn  form-control"
+                              style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;"><i class="fa fa-github" aria-hidden="true"></i>
+        </a></div>
+        <div class="col-2"><a href="{% url 'social:begin' 'vk-oauth2' %}" class="btn  form-control"
+                              style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;"><i class="fa fa-vk" aria-hidden="true"></i></a></div>
+        <div class="col-2"><a href="{% url 'social:begin' 'google-oauth2' %}" class="btn  form-control"
+                              style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;"><i class="fa fa-google-plus" aria-hidden="true"></i>
+        </a></div>
+    </div>
 {% endblock %}
