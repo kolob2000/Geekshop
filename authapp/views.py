@@ -1,11 +1,13 @@
+import django.contrib.auth.backends
 from django.contrib import auth, messages
 from django.core.mail import send_mail
+from django.db import transaction
 from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from django.urls import reverse
 
 from geekshop import settings
-from .forms import ShopUserAuthenticationForm, ShopUserCreationForm, ShopUserChangeForm
-from .models import ShopUser
+from .forms import ShopUserAuthenticationForm, ShopUserCreationForm, ShopUserChangeForm, ShopUserProfileForm
+from .models import ShopUser, ShopUserProfile
 
 
 def login(request):
@@ -52,17 +54,21 @@ def register(request):
     return render(request, 'authapp/registration.html', context=context)
 
 
+@transaction.atomic
 def user_edit(request):
     if request.method == 'POST':
         edit_form = ShopUserChangeForm(request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
+        edit_profile_form = ShopUserProfileForm(request.POST, request, instance=request.user.shopuserprofile)
+        if edit_form.is_valid() and edit_profile_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('auth:user_profile'))
     else:
         edit_form = ShopUserChangeForm(instance=request.user)
+        edit_profile_form = ShopUserProfileForm(instance=request.user.shopuserprofile)
     context = {
         'title': 'Редактировать данные пользователя',
-        'form': edit_form
+        'form': edit_form,
+        'edit_form': edit_profile_form
     }
     return render(request, 'authapp/user_edit.html', context=context)
 
@@ -90,8 +96,8 @@ def verify(request, email, key):
         user.is_active = True
         user.activation_key = 'registered'
         user.save()
-        auth.login(request, user)
-        return HttpResponseRedirect(reverse('auth:user_profile'))
+        auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+        return HttpResponseRedirect(reverse('auth:user_edit'))
     else:
         return render(request, 'authapp/confirmation_error.html', context={
             'title': 'Ошибка регистрации'

@@ -5,7 +5,7 @@ import re
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 
-from .models import ShopUser
+from .models import ShopUser, ShopUserProfile
 
 
 class ShopUserAuthenticationForm(AuthenticationForm):
@@ -72,3 +72,14 @@ class ShopUserChangeForm(UserChangeForm):
         if data < 18:
             raise forms.ValidationError('Вы слишком молоды!')
         return data
+
+
+class ShopUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ('gender', 'hash_tags', 'about_me')
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
