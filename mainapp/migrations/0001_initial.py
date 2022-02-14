@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -17,7 +16,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255, unique=True, verbose_name='Название')),
-                ('description', models.TextField(blank=True, default='Здесь должно быть описание...', verbose_name='Описание')),
+                ('description',
+                 models.TextField(blank=True, default='Здесь должно быть описание...', verbose_name='Описание')),
             ],
             options={
                 'verbose_name_plural': 'Categories',
@@ -30,10 +30,12 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=255, verbose_name='Название')),
                 ('image', models.ImageField(blank=True, upload_to='media')),
                 ('price', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Цена')),
-                ('old_price', models.DecimalField(decimal_places=2, default=0, max_digits=8, verbose_name='Старая цена')),
+                ('old_price',
+                 models.DecimalField(decimal_places=2, default=0, max_digits=8, verbose_name='Старая цена')),
                 ('description', models.TextField(blank=True, default='Описание товара...', verbose_name='Описание')),
                 ('is_stock', models.BooleanField(default=True, verbose_name='На складе')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainapp.category', verbose_name='Категория')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainapp.category',
+                                               verbose_name='Категория')),
             ],
             options={
                 'verbose_name_plural': 'Products',

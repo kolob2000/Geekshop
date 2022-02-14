@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     'use strict';
 
     function setCookie(key, value) {
@@ -40,7 +40,6 @@
             $parent_link.addClass('active');
         }
     }
-
 
 
     $(document).ready(function () {

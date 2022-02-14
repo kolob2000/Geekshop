@@ -8,7 +8,6 @@ from django.utils.timezone import utc
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('authapp', '0008_alter_shopuser_activation_key_expires'),
     ]
@@ -23,10 +22,12 @@ class Migration(migrations.Migration):
             name='ShopUserProfile',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('gender', models.CharField(blank=True, choices=[('M', 'М'), ('F', 'Ж')], max_length=1, verbose_name='пол')),
+                ('gender',
+                 models.CharField(blank=True, choices=[('M', 'М'), ('F', 'Ж')], max_length=1, verbose_name='пол')),
                 ('hash_tags', models.CharField(blank=True, max_length=255, verbose_name='хэштеги')),
                 ('about_me', models.TextField(blank=True, verbose_name='обо мне')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                'user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

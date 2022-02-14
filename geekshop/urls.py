@@ -31,6 +31,7 @@ urlpatterns = [
     re_path(r"^products/", include("mainapp.urls", namespace="products")),
     re_path(r"^auth/", include("authapp.urls", namespace="auth")),
     re_path(r"^basket/", include("basket.urls", namespace="basket")),
+    re_path(r"^order/", include("orderapp.urls", namespace="order")),
     re_path(r'^contact/', mainapp.ContactListView.as_view(), name='contact'),
     re_path(r'^social/', include('social_django.urls', namespace='social')),
 ]

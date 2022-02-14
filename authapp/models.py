@@ -3,7 +3,7 @@ from django.db import models
 from datetime import timedelta
 
 # Create your models here.
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_init
 from django.dispatch import receiver
 from django.utils.timezone import now
 
@@ -13,7 +13,8 @@ class ShopUser(AbstractUser):
                                default='avatar/default_profile_photo.png')
     age = models.PositiveIntegerField(verbose_name='Возраст', default=25)
     activation_key = models.CharField(max_length=128, blank=True)
-    activation_key_expires = models.DateTimeField(default=(now() + timedelta(hours=48)))
+    activation_key_expires = models.DateTimeField(null=True)
+    # activation_key_expires = models.DateTimeField(default=(now() + timedelta(hours=48)))
     REQUIRED_FIELDS = ('age', 'email',)
 
     class Meta:
@@ -40,10 +41,17 @@ class ShopUserProfile(models.Model):
     about_me = models.TextField(verbose_name='обо мне', blank=True)
 
 
+@receiver(post_init, sender=ShopUser)
+def post_init_shop_user(sender, instance: ShopUser, **kwargs):
+    instance.activation_key_expires = (now() + timedelta(hours=48))
+
+
 @receiver(post_save, sender=ShopUser)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         ShopUserProfile.objects.create(user=instance)
+    # instance.activation_key_expires = (now() + timedelta(hours=48))
+    # instance.save()
 
 
 @receiver(post_save, sender=ShopUser)

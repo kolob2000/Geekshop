@@ -28,6 +28,7 @@
 
         </tbody>
     </table>
+    <a href="{% url 'order:add_order' val %}" class=" get-order-button" data-pk="">Оформитьзаказ</a>
     <p style="text-align: end; font-weight: 700">Всего:&nbsp;{{ basket_cost }}</p>
 {% else %}
     <span class="basket_quantity" data-quantity="0"></span>

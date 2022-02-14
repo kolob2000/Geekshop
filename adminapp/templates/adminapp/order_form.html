@@ -1,0 +1,41 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Пользователь</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Добавить поля</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                {% for field in form %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+                <td>
+                    <button type="submit"
+                            class="admin-button" style="border: none"><i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-3"><a href="{% url 'adminapp:order_list' %}" class="btn  form-control"
+                                  style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">Отмена</a></div>
+        </div>
+
+    </form>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

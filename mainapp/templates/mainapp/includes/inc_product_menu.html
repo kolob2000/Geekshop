@@ -5,7 +5,7 @@
     </li>
     {% for link in menu_links %}
         <li>
-            <a class="{% if '/products/'|add:link.slug|add:'/' in request.path  %}active{% endif %}"
+            <a class="{% if '/products/'|add:link.slug|add:'/' in request.path %}active{% endif %}"
                href="{% url 'products:category' link.slug %}">{{ link.title }}</a>
         </li>
     {% endfor %}
