@@ -24,7 +24,7 @@
                 <td>{{ order.created|date:'d/m/Y' }}</td>
                 <td>{{ order.get_total_qunatity }}</td>
                 <td>{{ order.get_total_cost|floatformat:0 }} руб.</td>
-                <td><a href="{% url 'order:delete_order' order.pk %}"
+                <td><a href="{% url 'adminapp:order_delete' order.pk %}"
                        class="admin-button"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                 <td><a href="{% url 'admin:order_update' order.pk %}"
                        class="admin-button"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>

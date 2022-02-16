@@ -23,5 +23,7 @@ urlpatterns = [
     re_path(r'^orders_list/$', adminapp.OrdersListView.as_view(), name='order_list'),
     re_path(r'^order_update/(?P<pk>\d+)/$', adminapp.OrderUpdateView.as_view(), name='order_update'),
     re_path(r'^order_create/$', adminapp.OrderCreateView.as_view(), name='order_create'),
+    re_path(r'^order_delete/(?P<pk>\d+)/$', adminapp.OrderDeleteView.as_view(), name='order_delete'),
+    re_path(r'^item_price/$', adminapp.get_item_price, name='item_price'),
 
 ]
