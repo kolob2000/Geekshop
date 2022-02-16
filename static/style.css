@@ -1197,6 +1197,7 @@ td:first-child {
 
 .red-button:hover {
     box-shadow: none;
+    color: #212121;
 }
 
 .red-button:active {
