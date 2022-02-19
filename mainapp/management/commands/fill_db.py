@@ -21,4 +21,3 @@ class Command(BaseCommand):
             i['category'] = Category.objects.get(pk=i['category'])
             product = Product(**i)
             product.save()
-        print('data was loaded.')

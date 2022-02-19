@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('mainapp', '0006_auto_20220102_1735'),
     ]
@@ -18,6 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='short_desc',
-            field=models.CharField(blank=True, default='Короткое описание', max_length=255, verbose_name='Короткое описание'),
+            field=models.CharField(blank=True, default='Короткое описание', max_length=255,
+                                   verbose_name='Короткое описание'),
         ),
     ]

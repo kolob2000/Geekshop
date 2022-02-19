@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     'use strict';
 
     function FixSelectorHeight() {
@@ -114,7 +114,7 @@
         // Apply select2 to any select boxes that don't yet have it
         // and are not part of the django's empty-form inline
         const noSelect2 = '.empty-form select, .select2-hidden-accessible, .selectfilter, .selector-available select, .selector-chosen select';
-        $('select').not(noSelect2).select2({ width: 'element' });
+        $('select').not(noSelect2).select2({width: 'element'});
     }
 
     $(document).ready(function () {
@@ -129,9 +129,13 @@
         $('.inline-related fieldset.module .add-row a').addClass('btn btn-sm btn-default float-right');
 
         // Ensure we preserve the tab the user was on using the url hash, even on page reload
-        if ($tabs.length) { handleTabs($tabs); }
-        else if ($carousel.length) { handleCarousel($carousel); }
-        else if ($collapsible.length) { handleCollapsible($collapsible); }
+        if ($tabs.length) {
+            handleTabs($tabs);
+        } else if ($carousel.length) {
+            handleCarousel($carousel);
+        } else if ($collapsible.length) {
+            handleCollapsible($collapsible);
+        }
 
         applySelect2()
     });

@@ -13,5 +13,3 @@ class Basket(models.Model):
     @property
     def product_cost(self):
         return self.quantity * self.product.price
-
-

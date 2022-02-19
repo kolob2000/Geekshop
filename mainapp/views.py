@@ -77,7 +77,6 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'mainapp/product_detail.html'
     context_object_name = 'product'
-    print(model)
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
@@ -85,7 +84,6 @@ class ProductDetailView(DetailView):
         context['menu_links'] = Category.objects.all()
         context['rel_products'] = Product.objects.all().order_by('?')[:3]
         return context
-
 
 # def product_detail(request, category, product):
 #     product = Product.objects.get(slug=product)

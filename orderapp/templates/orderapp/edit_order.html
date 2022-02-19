@@ -1,0 +1,33 @@
+{% extends 'orderapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 style="text-align: center; margin-top: 80px; margin-bottom: 50px;">{{ title|title }}</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Артикул</th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Стоимость</th>
+            <th scope="col">Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in order_items %}
+            <tr>
+                <th scope="row">{{ item.product_id }}</th>
+                <th scope="row"><a class="edit-item-link"
+                                   href="{% url 'products:product' item.product.category.slug item.product.slug %}">{{ item.product.title|capfirst }}</a>
+                </th>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.get_product_cost|floatformat:0 }} руб.</td>
+                <td><a href="{% url 'orderapp:delete' item.pk %}"
+                       class="admin-button"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                <td><a href="{% url 'orderapp:update' item.pk %}"
+                       class="admin-button"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

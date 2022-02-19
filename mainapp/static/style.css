@@ -714,7 +714,19 @@ table {
     width: 100%;
     margin-top: 30px;
 }
-
+.get-order-button{
+    background: #f44336;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 10px;
+    height: 30px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
 .basket-button {
     background: #f44336;
     color: #ffffff;
