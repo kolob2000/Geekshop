@@ -19,5 +19,9 @@ urlpatterns = [
     re_path(r'^product/create/(?P<pk>\d+)/$', adminapp.product_create, name='product_create'),
     re_path(r'^product/(?P<pk>\d+)/$', adminapp.product_update, name='product_update'),
     re_path(r'^product/delete/(?P<pk>\d+)/$', adminapp.product_delete, name='product_delete'),
+    #################################################################
+    re_path(r'^orders_list/$', adminapp.OrdersListView.as_view(), name='order_list'),
+    re_path(r'^order_update/(?P<pk>\d+)/$', adminapp.OrderUpdateView.as_view(), name='order_update'),
+    re_path(r'^order_create/$', adminapp.OrderCreateView.as_view(), name='order_create'),
 
 ]

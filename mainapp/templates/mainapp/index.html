@@ -30,12 +30,12 @@
         <div class="tab-content">
             {% for product in object_list %}
                 <div class="block">
-                    <a href="{% url 'products:product' product.category.slug product.slug  %}">
+                    <a href="{% url 'products:product' product.category.slug product.slug %}">
                         <img alt="img" src="{{ product.image.url }}" style="height: 270px; width: 270px;">
                         <div class="text">
                             <img src="{% static 'img/icon-hover.png' %}" alt="img">
                             <h4>{{ product.title }}</h4>
-                            <p>{{ product.description|truncatewords:8}}</p>
+                            <p>{{ product.description|truncatewords:8 }}</p>
                         </div>
                     </a>
                 </div>

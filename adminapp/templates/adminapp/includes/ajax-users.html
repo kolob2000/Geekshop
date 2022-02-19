@@ -3,8 +3,11 @@
         <td>{{ user.username }}</td>
         <td>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</td>
         <td>{{ user.email }}</td>
-        <td><a href="{% url 'admin:user_update' user.pk %}" class="admin-button">Редактировать</a></td>
-        <td><a href="{% url 'admin:user_delete' user.pk %}" data-pk="{{ user.pk }}" class="admin-button users-delete">+|-</a></td>
+        <td><a href="{% url 'admin:user_update' user.pk %}" class="admin-button"><i class="fa fa-pencil"
+                                                                                    aria-hidden="true"></i></a></td>
+        <td><a href="{% url 'admin:user_delete' user.pk %}" data-pk="{{ user.pk }}" class="admin-button users-delete"><i
+                class="fa fa-trash-o" aria-hidden="true"></i></a>
+        </td>
     </tr>
 {% endfor %}
 

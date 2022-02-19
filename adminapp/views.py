@@ -1,19 +1,23 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import transaction
+from django.forms import inlineformset_factory
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.core.paginator import Paginator
 
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import DetailView, DeleteView
+from django.views.generic import DetailView, DeleteView, ListView, UpdateView, CreateView
 from django.views.generic.detail import SingleObjectMixin
 
 from adminapp.forms import ShopUserAdminChangeForm, CategoryEditForm, ProductEditForm
 from authapp.models import ShopUser
 from authapp.forms import ShopUserCreationForm
 from mainapp.models import Category, Product
+from orderapp.forms import OrderItemForm, OrderForm
+from orderapp.models import Order, OrderItem
 
 
 @user_passes_test(lambda user: user.is_superuser)
@@ -71,7 +75,6 @@ def user_delete(request, pk):
 
 @user_passes_test(lambda user: user.is_superuser)
 def category_read(request):
-    print('categories_read')
     context = {
         'categories': Category.objects.all(),
         'title': 'Категории',
@@ -81,7 +84,6 @@ def category_read(request):
 
 @user_passes_test(lambda user: user.is_superuser)
 def category_update(request, pk=None):
-    print('working update')
     if pk:
         edit_category = get_object_or_404(Category, pk=pk)
         if request.method == 'POST':
@@ -108,7 +110,6 @@ def category_update(request, pk=None):
 
 @user_passes_test(lambda user: user.is_superuser)
 def category_delete(request, pk):
-    print('working data')
     category = get_object_or_404(Category, pk=pk)
     if category.is_active:
         category.is_active = False
@@ -191,3 +192,61 @@ def product_delete(request, pk):
         product.is_active = True
     product.save()
     return HttpResponseRedirect(reverse('admin:product_read', args=[category]))
+
+
+class OrdersListView(ListView):
+    model = Order
+    template_name = 'adminapp/order_list.html'
+
+
+class OrderUpdateView(UpdateView):
+    model = Order
+    fields = []
+    template_name = 'adminapp/order_update_forms.html'
+
+    def get_success_url(self):
+        with transaction.atomic():
+            order = Order.objects.get(pk=self.object.id)
+            if order.get_total_qunatity2 == 0:
+                order = Order.objects.filter(pk=self.object.id)
+                order.delete()
+        return reverse_lazy('adminapp:order_list')
+
+    def get_context_data(self, **kwargs):
+        data = super(OrderUpdateView, self).get_context_data(**kwargs)
+        data['title'] = 'Изменить заказ'
+        OrderFormSet = inlineformset_factory(Order, OrderItem, OrderItemForm, extra=1)
+        if self.request.POST:
+            data['orderitems'] = OrderFormSet(self.request.POST, instance=self.object)
+        else:
+            data['orderitems'] = OrderFormSet(instance=self.object)
+        return data
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        orderitems = context['orderitems']
+
+        with transaction.atomic():
+            if orderitems.is_valid():
+                orderitems.instance = self.object
+                orderitems.save()
+
+        if self.object.get_total_cost() == 0:
+            self.object.delete()
+
+        return super(OrderUpdateView, self).form_valid(form)
+
+
+class OrderCreateView(CreateView):
+    model = Order
+    fields = ('user', 'status',)
+    template_name = 'adminapp/order_form.html'
+
+    def get_form(self, form_class=None):
+        form = super(OrderCreateView, self).get_form(form_class=form_class)
+        for field_name, field in form.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+        return form
+
+    def get_success_url(self):
+        return reverse_lazy('adminapp:order_update', args=(self.object.id,))

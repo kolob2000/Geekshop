@@ -1,0 +1,49 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <table class="table">
+            {{ orderitems.management_form }}
+            <thead>
+            <tr>
+                <th scope="col">Артикул</th>
+                <th scope="col">Товар</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Уадление</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for form in orderitems.forms %}
+                <tr>
+                    <th scope="row">{% if form.instance.id %}005{{ form.instance.id }}{% endif %}</th>
+                    {% for visible_field in form.visible_fields %}
+                        {% if forloop.first %}
+                            {% for hidden_field in form.hidden_fields %}
+                                {{ hidden_field }}
+                            {% endfor %}
+                        {% endif %}
+                        <td>{{ visible_field }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <div class="row justify-content-center">
+            <div class="col-3">
+                    <button type="submit" class="btn form-control" style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+    border-radius: 10px; margin-top: 20px;"> Сохранить
+                    </button>
+            </div>
+            <div class="col-3"><a href="{% url 'admin:order_list' %}" class="btn  form-control"
+                                  style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">Отмена</a></div>
+        </div>
+
+    </form>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

@@ -8,14 +8,22 @@
     <li><a class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">контакты</a>
     </li>
     {% if user.is_authenticated %}
-        <li><a class="{% if 'user_profile' in request.path or 'user_edit' in request.path %}active{% endif %}"
-               href="{% url 'auth:user_profile' %}">{{ user.username }}</a></li>
         {% if user.is_superuser %}
             <li><a class=""
                    href="{% url 'admin:index' %}">Админка</a></li>
         {% endif %}
-        <li><a class="{% if 'logout' in request.path %}active{% endif %}"
-               href="{% url 'auth:logout' %}">Выйти</a></li>
+        <li>
+            <div class="nav-item dropdown">
+                <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Пользователь</a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item {% if 'user_profile' in request.path or 'user_edit' in request.path %}active{% endif %}"
+                           href="{% url 'auth:user_profile' %}">{{ user.username }}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'orderapp:orders_list' %}">Мои заказы</a></li>
+                    <li><a class="dropdown-item" href="{% url 'auth:logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        </li>
     {% else %}
         <li><a class="{% if 'login' in request.path %}active{% endif %}"
                href="{% url 'auth:login' %}">Войти</a></li>

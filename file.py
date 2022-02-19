@@ -1,5 +1,8 @@
 from urllib import request
-print(2**48)
+
+print(2 ** 48)
+
+
 class Point:
     mini = 3
     maxi = 5

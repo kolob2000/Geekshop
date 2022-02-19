@@ -1,0 +1,22 @@
+{% extends 'orderapp/base.html' %}
+
+{% block content %}
+    <h1 style="text-align: center; margin-bottom: 80px; margin-top: 80px;">Удалить
+        позицию {{ orderitem.product.title|upper }}
+        из заказа?</h1>
+
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+            <div class="col-3">
+                <button type="submit" class="btn form-control" style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">Удалить
+                </button>
+            </div>
+            <div class="col-3"><a href="{% url 'orderapp:edit_order' orderitem.order_id %}" class="btn  form-control"
+                                  style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">Отмена</a></div>
+        </div>
+    </form>
+{% endblock %}

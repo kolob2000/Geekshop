@@ -1,122 +1,122 @@
 [
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 1,
-            "title": "комфорт 1",
-            "image": "img/product-1.jpg",
-            "short_desc": "комфортный стул",
-            "description": "подойдет для просмотра фильмов",
-            "price": "2989.50",
-            "quantity": 17
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 1,
-            "title": "комфорт 2",
-            "image": "img/product-2.jpg",
-            "short_desc": "очень комфортный стул",
-            "description": "подойдет для общения с друзьями",
-            "price": "3687.2",
-            "quantity": 21
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 1,
-            "title": "люкс",
-            "image": "img/product-3.jpg",
-            "short_desc": "использованы премиальные материалы",
-            "description": "для тех, кто стремится к лучшему",
-            "price": "8157.99",
-            "quantity": 7
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 2,
-            "title": "стандарт",
-            "image": "img/product-4.jpg",
-            "short_desc": "универсальное решение",
-            "description": "подойдет для любого офиса",
-            "price": "1895.25",
-            "quantity": 27
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 2,
-            "title": "премиум",
-            "image": "img/product-61.jpg",
-            "short_desc": "улучшенный дизайн",
-            "description": "идеально впишется в строгий интерьер офиса",
-            "price": "3587.41",
-            "quantity": 9
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 3,
-            "title": "новинка",
-            "image": "img/product-11.jpg",
-            "short_desc": "инновационный дизайн",
-            "description": "нестандартное решение для современного интерьера",
-            "price": "5361.47",
-            "quantity": 18
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 3,
-            "title": "прогресс",
-            "image": "img/product-21.jpg",
-            "short_desc": "прогрессивный дизайн",
-            "description": "функциональное и комфортное решение",
-            "price": "6789.33",
-            "quantity": 12
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 4,
-            "title": "венеция",
-            "image": "img/product-31.jpg",
-            "short_desc": "классические формы",
-            "description": "окунитесь в европейский комфорт",
-            "price": "4147.51",
-            "quantity": 25
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 4,
-            "title": "тоскана",
-            "image": "img/product-41.jpg",
-            "short_desc": "эргономичная спинка",
-            "description": "почувствуйте комфорт и насладитесь цветовой гаммой",
-            "price": "7147.35",
-            "quantity": 18
-        }
-    },
-    {
-        "model": "mainapp.product",
-        "fields": {
-            "category": 4,
-            "title": "рим",
-            "image": "img/product-51.jpg",
-            "short_desc": "удачные пропорции",
-            "description": "компактность и функциональность",
-            "price": "8357.77",
-            "quantity": 8
-        }
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 1,
+      "title": "комфорт 1",
+      "image": "img/product-1.jpg",
+      "short_desc": "комфортный стул",
+      "description": "подойдет для просмотра фильмов",
+      "price": "2989.50",
+      "quantity": 17
     }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 1,
+      "title": "комфорт 2",
+      "image": "img/product-2.jpg",
+      "short_desc": "очень комфортный стул",
+      "description": "подойдет для общения с друзьями",
+      "price": "3687.2",
+      "quantity": 21
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 1,
+      "title": "люкс",
+      "image": "img/product-3.jpg",
+      "short_desc": "использованы премиальные материалы",
+      "description": "для тех, кто стремится к лучшему",
+      "price": "8157.99",
+      "quantity": 7
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 2,
+      "title": "стандарт",
+      "image": "img/product-4.jpg",
+      "short_desc": "универсальное решение",
+      "description": "подойдет для любого офиса",
+      "price": "1895.25",
+      "quantity": 27
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 2,
+      "title": "премиум",
+      "image": "img/product-61.jpg",
+      "short_desc": "улучшенный дизайн",
+      "description": "идеально впишется в строгий интерьер офиса",
+      "price": "3587.41",
+      "quantity": 9
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 3,
+      "title": "новинка",
+      "image": "img/product-11.jpg",
+      "short_desc": "инновационный дизайн",
+      "description": "нестандартное решение для современного интерьера",
+      "price": "5361.47",
+      "quantity": 18
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 3,
+      "title": "прогресс",
+      "image": "img/product-21.jpg",
+      "short_desc": "прогрессивный дизайн",
+      "description": "функциональное и комфортное решение",
+      "price": "6789.33",
+      "quantity": 12
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 4,
+      "title": "венеция",
+      "image": "img/product-31.jpg",
+      "short_desc": "классические формы",
+      "description": "окунитесь в европейский комфорт",
+      "price": "4147.51",
+      "quantity": 25
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 4,
+      "title": "тоскана",
+      "image": "img/product-41.jpg",
+      "short_desc": "эргономичная спинка",
+      "description": "почувствуйте комфорт и насладитесь цветовой гаммой",
+      "price": "7147.35",
+      "quantity": 18
+    }
+  },
+  {
+    "model": "mainapp.product",
+    "fields": {
+      "category": 4,
+      "title": "рим",
+      "image": "img/product-51.jpg",
+      "short_desc": "удачные пропорции",
+      "description": "компактность и функциональность",
+      "price": "8357.77",
+      "quantity": 8
+    }
+  }
 ]

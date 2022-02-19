@@ -12,6 +12,7 @@ def view(request):
     context = {
         'title': 'Корзина',
         'basket': Basket.objects.all().filter(user=request.user),
+        'val': 0,
     }
     return render(request, 'basketapp/basket.html', context=context)
 
@@ -42,6 +43,7 @@ def edit(request):
         product.delete()
     context = {
         'basket': Basket.objects.all().filter(user=request.user),
+        'val': 0,
     }
     return render(request, 'basketapp/basket_ajax.html', context=context)
 
@@ -51,6 +53,7 @@ def remove(request):
     product = get_object_or_404(Basket, pk=pk)
     product.delete()
     context = {
-        'basket': Basket.objects.all().filter(user=request.user)
+        'basket': Basket.objects.all().filter(user=request.user),
+        'val': 0,
     }
     return render(request, 'basketapp/basket_ajax.html', context=context)

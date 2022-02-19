@@ -1,0 +1,15 @@
+{% extends 'orderapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 style="text-align: center; margin-top: 80px; margin-bottom: 50px;">{{ title|title }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-3"><a href="{% url 'order:add_order' val %}" class="btn  form-control"
+                              style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">Подтвердить
+        </a></div>
+        <div class="col-3"><a href="{% url 'basket:basket' %}" class="btn  form-control"
+                              style="background: #f44336; color: #ffffff; font-size: 22px; font-weight: 700; text-transform: uppercase;
+border-radius: 10px; margin-top: 20px;">Отмена</a></div>
+    </div>
+{% endblock %}

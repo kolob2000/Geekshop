@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('mainapp', '0003_auto_20211229_2207'),
     ]
@@ -16,7 +15,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('image', models.ImageField(blank=True, upload_to='media')),
-                ('product', models.ForeignKey(blank=True, default=None, on_delete=django.db.models.deletion.PROTECT, related_name='images', to='mainapp.product')),
+                ('product', models.ForeignKey(blank=True, default=None, on_delete=django.db.models.deletion.PROTECT,
+                                              related_name='images', to='mainapp.product')),
             ],
         ),
     ]

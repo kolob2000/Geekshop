@@ -4,7 +4,6 @@ from django.utils.timezone import utc
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('authapp', '0004_auto_20220204_1719'),
     ]
