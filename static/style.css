@@ -1197,6 +1197,7 @@ td:first-child {
 
 .red-button:hover {
     box-shadow: none;
+    color: #212121;
 }
 
 .red-button:active {
@@ -1314,12 +1315,12 @@ td:first-child {
     }
 }
 
-.page-link:hover {
-    z-index: 2;
-    color: #0a58ca;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
-}
+/*.page-link:hover {*/
+/*    z-index: 2;*/
+/*    color: #0a58ca;*/
+/*    background-color: #e9ecef;*/
+/*    border-color: #dee2e6;*/
+/*}*/
 
 .page-link:focus {
     z-index: 3;
@@ -1409,4 +1410,11 @@ td:first-child {
     color: #fff !important;
     background-color: #F44336FF !important;
     border-color: #F44336FF !important;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #f51707 !important;
+    background-color: #f1eaea !important;
+    border-color: #e3dcdb !important;
 }

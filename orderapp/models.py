@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_delete, pre_save, post_save
+from django.dispatch import receiver
 
 from geekshop import settings
 from mainapp.models import Product
@@ -54,14 +56,14 @@ class Order(models.Model):
         items = self.orderitems.select_related()
         return sum(list(map(lambda x: x.quantity * x.product.price, items)))
 
-    def delete(self):
-        items = self.orderitems.select_related()
-        for item in items:
-            item.product.quantity = item.quantity
-            item.product.save()
-
-        self.is_active = False
-        self.save()
+    # def delete(self):
+    #     items = self.orderitems.select_related()
+    #     for item in items:
+    #         item.product.quantity = item.quantity
+    #         item.product.save()
+    #
+    #     self.is_active = False
+    #     self.save()
 
 
 class OrderItem(models.Model):
@@ -71,3 +73,44 @@ class OrderItem(models.Model):
 
     def get_product_cost(self):
         return self.product.price * self.quantity
+
+    @property
+    def get_item_price(self):
+        return self.product.price
+
+
+# @receiver(post_save, sender=Order)
+# def post_save_order(sender: Order, instance: Order, **kwargs):
+#     orderitems = OrderItem.objects.filter(order_id=instance.pk)
+#     for item in orderitems:
+#         product = Product.objects.get(pk=item.product_id)
+#         product.quantity -= item.quantity
+#         product.save()
+
+
+@receiver(pre_save, sender=OrderItem)
+def pre_save_order_item(sender: OrderItem, instance: OrderItem, **kwargs):
+    product = Product.objects.get(pk=instance.product_id)
+    if OrderItem.objects.filter(pk=instance.id).exists():
+        item = OrderItem.objects.get(pk=instance.id)
+        if instance.quantity > item.quantity:
+            product.quantity -= (instance.quantity - item.quantity)
+        else:
+            product.quantity += (item.quantity - instance.quantity)
+        product.save()
+    else:
+        product.quantity -= instance.quantity
+        product.save()
+
+
+@receiver(pre_delete, sender=OrderItem)
+def pre_delete_order_item(sender: OrderItem, instance: OrderItem, **kwargs):
+    product = Product.objects.get(pk=instance.product_id)
+    product.quantity += instance.quantity
+    product.save()
+
+# @receiver(pre_delete, sender=Order)
+# def pre_delete_order(sender: Order, instance: Order, **kwargs):
+#     orderitemes = OrderItem.objects.filter(order_id=instance.pk)
+#     for item in orderitemes:
+#         item.delete()

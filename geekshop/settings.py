@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ic*z&tq%#5ce7hu!*fpmg1jde@5th)%xragz$gm$_^fb459%h9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['django-python.ml', 'www.django-python.ml', ]
 
 # Application definition
 
@@ -94,21 +94,21 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 # DATABASES = {
-#     "default": {
-#         "NAME": "geekshop",
-#         "ENGINE": "django.db.backends.postgresql",
-#         "USER": "django",
-#         "PASSWORD": "geekbrains",
-#         "HOST": "localhost",
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+DATABASES = {
+    "default": {
+        "NAME": "geekshop",
+        "ENGINE": "django.db.backends.postgresql",
+        "USER": "django",
+        "PASSWORD": "geekbrains",
+        "HOST": "localhost",
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -154,8 +154,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -169,8 +169,8 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 LOGIN_URL = 'auth:login'
 LOGIN_REDIRECT_URL = 'authapp:user_edit'
 
-# DOMAIN_NAME = 'http://localhost'
-DOMAIN_NAME = 'http://django-python.ru'
+DOMAIN_NAME = 'http://localhost'
+# DOMAIN_NAME = 'http://django-python.ml'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'k.kolabis@mail.ru'
