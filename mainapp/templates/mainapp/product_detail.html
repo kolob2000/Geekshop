@@ -61,18 +61,20 @@
                 <h2>Похожие продукты</h2>
                 <a class="explore" href="#">показать все <img alt="" src="{% static 'img/arrow.png' %}"></a>
             </div>
-            <div class="related-products clearfix">
+            <div class="related-products clearfix row">
                 {% for product in rel_products %}
-                    <div class="block">
-                        <a href="{% url 'products:product' product.category.slug product.slug %}"><img alt=""
-                                                                                                       src="{{ product.image.url }}"
-                                                                                                       style="width: 370px;height: 370px;">
-                            <div class="text">
-                                <img alt="img" src="{% static 'img/icon-hover.png' %}">
-                                <h4>{{ product.title }}</h4>
-                                <p>{{ product.description|truncatewords:2 }} </p>
-                            </div>
-                        </a>
+                    <div class="col-4">
+                        <div class="block">
+                            <a href="{% url 'products:product' product.category.slug product.slug %}"><img alt=""
+                                                                                                           src="{{ product.image.url }}"
+                                                                                                           style="width: 370px;height: 370px;">
+                                <div class="text">
+                                    <img alt="img" src="{% static 'img/icon-hover.png' %}">
+                                    <h4>{{ product.title }}</h4>
+                                    <p>{{ product.description|truncatewords:2 }} </p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>

@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.forms import inlineformset_factory
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.core.paginator import Paginator
 
@@ -250,3 +250,17 @@ class OrderCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('adminapp:order_update', args=(self.object.id,))
+
+
+class OrderDeleteView(DeleteView):
+    model = Order
+    success_url = reverse_lazy('adminapp:order_list')
+    template_name = 'adminapp/order_confirm_delete.html'
+
+
+def get_item_price(request):
+    pk = int(request.GET['pkey'])
+    product = Product.objects.get(pk=pk)
+    price = product.price
+    return HttpResponse(f'{int(price)}')
+    # return render(request, f'{price}')
