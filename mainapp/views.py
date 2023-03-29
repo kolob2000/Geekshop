@@ -36,13 +36,15 @@ class ProductListView(ListView):
         context = super(ProductListView, self).get_context_data(**kwargs)
         context['title'] = 'Продукты'
         context['menu_links'] = Category.objects.all().filter(is_active=True)
-        context['rel_products'] = Product.objects.all().filter(is_active=True).order_by('?')[:3] if self.kwargs[
-                                                                                                        'slug'] is None else Category.objects.get(
+        context['rel_products'] = Product.objects.all().filter(is_active=True).order_by('?')[:3].select_related(
+            'category') if self.kwargs[
+                               'slug'] is None else Category.objects.get(
             slug=self.kwargs['slug']).product_set.all().filter(is_active=True).order_by('?')[:3]
         return context
 
     def get_queryset(self):
-        return Product.objects.all().filter(is_active=True) if self.kwargs['slug'] is None else Category.objects.get(
+        return Product.objects.all().filter(is_active=True).select_related('category') if self.kwargs[
+                                                                                              'slug'] is None else Category.objects.get(
             slug=self.kwargs['slug']).product_set.all().filter(is_active=True)
 
 
